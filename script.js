@@ -17,7 +17,7 @@ const breadcrumbs = {
   plans: "Quản lý gói đăng ký",
 };
 
-const API_BASE = "http://localhost:8080/api";
+const API_BASE = "https://edutask-production-7184.up.railway.app/api";
 let currentUser = null;
 let currentGroups = [];
 let currentTasks = [];
