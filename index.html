@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduTask – Nền tảng Học nhóm thông minh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Mono:wght@400;500&family=Inter:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01m-.01 4h.01"
+            />
+          </svg>
+        </div>
+        <div class="logo-text">EduTask</div>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Tính năng</a>
+        <a href="#ai">Công nghệ AI</a>
+      </div>
+      <div>
+        <button
+          class="btn btn-outline"
+          style="margin-right: 12px; border: none"
+          onclick="openLoginModal()"
+        >
+          Đăng nhập
+        </button>
+        <button
+          class="btn btn-primary"
+          style="margin-right: 12px; border: none"
+          onclick="openRegisterModal()"
+        >
+          Bắt đầu miễn phí
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Học nhóm thông minh,<br /><span>hiệu quả vượt trội</span></h1>
+        <p>
+          EduTask là ứng dụng quản lý học nhóm thông minh được thiết kế riêng
+          cho sinh viên, giúp nâng cao hiệu quả làm việc nhóm.
+        </p>
+        <div class="hero-actions">
+          <a href="dashboard.html" class="btn btn-primary">
+            Mở Dashboard của bạn
+            <svg
+              width="18"
+              height="18"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Abstract Dashboard Mockup -->
+      <div class="hero-image">
+        <img src="images/dashboard.png" width="100%" height="100%" />
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <h2 class="features-title">Giải quyết mọi rắc rối khi làm việc nhóm</h2>
+      <p class="features-subtitle">
+        Tạm biệt tình trạng "kẻ làm không hết, người chơi không xong"
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div
+            class="card-icon"
+            style="background: #eef2fd; color: var(--primary)"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+          </div>
+          <h3>Bảng Kanban trực quan</h3>
+          <p>
+            Theo dõi mọi công việc theo trạng thái: Chưa làm, Đang làm và Đã
+            hoàn thành. Đảm bảo nhóm luôn bám sát deadline.
+          </p>
+        </div>
+        <div class="card">
+          <div
+            class="card-icon"
+            style="background: #e8f5ee; color: var(--green)"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
+              />
+            </svg>
+          </div>
+          <h3>Đo lường đóng góp (%)</h3>
+          <p>
+            Hệ thống tự động chấm điểm và lập biểu đồ đóng góp của từng thành
+            viên, minh bạch hóa công sức của mỗi cá nhân.
+          </p>
+        </div>
+        <div class="card">
+          <div
+            class="card-icon"
+            style="background: #fdf3e3; color: var(--amber)"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+          <h3>Quản lý đa nhóm học</h3>
+          <p>
+            Quản lý song song nhiều môn học khác nhau (CNXH, CTDL, Kinh tế vi
+            mô...) trong cùng một tài khoản duy nhất.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Section -->
+    <section id="ai" class="ai-banner">
+      <div>
+        <div class="ai-badge">✨ EduTask AI</div>
+        <h2>Phân công tự động & Công bằng</h2>
+        <p>
+          Trợ lý AI của EduTask phân tích tải công việc, lịch sử hoạt động và
+          điểm đóng góp (Ví dụ: Thành viên chỉ đạt 33% tiến độ) để tự động đề
+          xuất phân công nhiệm vụ mới. Giúp cân bằng khối lượng công việc cho
+          toàn đội.
+        </p>
+      </div>
+      <a
+        href="#"
+        class="btn btn-primary"
+        style="background: var(--white); color: var(--dark)"
+        >Trải nghiệm tính năng AI</a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div
+        style="
+          font-family: &quot;Bricolage Grotesque&quot;;
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--dark);
+          margin-bottom: 12px;
+        "
+      >
+        EduTask
+      </div>
+      <p>
+        &copy; 2026 EduTask. Nền tảng Học nhóm thông minh dành cho sinh viên.
+      </p>
+    </footer>
+
+    <!-- MODAL: Login -->
+    <div class="modal-overlay" id="login-modal">
+      <form class="modal" id="login-form">
+        <div class="modal-header">
+          <div class="modal-title">Đăng nhập</div>
+          <button type="button" class="modal-close" onclick="closeLoginModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Tên tài khoản</label>
+            <input
+              type="text"
+              class="form-input"
+              id="login-email"
+              placeholder="Nhập email..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mật khẩu</label>
+            <div style="position: relative;">
+              <input
+                type="password"
+                class="form-input"
+                id="login-password"
+                placeholder="Nhập mật khẩu..."
+                required
+                style="padding-right: 40px;"
+              />
+              <button type="button" onclick="togglePasswordVisibility('login-password')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">
+                <svg class="eye-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+            <div style="text-align: right; margin-top: 8px;">
+              <a href="#" onclick="openForgotPasswordModal(event)" style="font-size: 12px; color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s;">Quên mật khẩu?</a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="login-button">Đăng nhập</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- MODAL: Register -->
+    <div class="modal-overlay" id="register-modal">
+      <form class="modal" id="register-form">
+        <div class="modal-header">
+          <div class="modal-title">Đăng ký</div>
+          <button type="button" class="modal-close" onclick="closeRegisterModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Họ tên</label>
+            <input
+              type="text"
+              class="form-input"
+              id="register-fullname"
+              placeholder="Nhập họ tên..."
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-input"
+              id="register-email"
+              placeholder="Nhập email..."
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mật khẩu</label>
+            <div style="position: relative;">
+              <input
+                type="password"
+                class="form-input"
+                id="register-password"
+                placeholder="Nhập mật khẩu..."
+                required
+                style="padding-right: 40px;"
+              />
+              <button type="button" onclick="togglePasswordVisibility('register-password')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">
+                <svg class="eye-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Nhập lại mật khẩu</label>
+            <div style="position: relative;">
+              <input
+                type="password"
+                class="form-input"
+                id="register-confirm-password"
+                placeholder="Nhập lại mật khẩu..."
+                required
+                style="padding-right: 40px;"
+              />
+              <button type="button" onclick="togglePasswordVisibility('register-confirm-password')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">
+                <svg class="eye-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="register-button">Đăng ký</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- MODAL: Forgot Password -->
+    <div class="modal-overlay" id="forgot-password-modal">
+      <form class="modal" id="forgot-password-form">
+        <div class="modal-header">
+          <div class="modal-title">Khôi phục mật khẩu</div>
+          <button type="button" class="modal-close" onclick="closeForgotPasswordModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size: 13px; color: var(--text2); margin-bottom: 16px; line-height: 1.5;">
+            Nhập email tài khoản của bạn để khôi phục mật khẩu. Hệ thống sẽ cấp một mật khẩu tạm thời mới.
+          </p>
+          <div class="form-group">
+            <label class="form-label">Email tài khoản</label>
+            <input
+              type="email"
+              class="form-input"
+              id="forgot-email"
+              placeholder="Nhập email của bạn..."
+              required
+            />
+          </div>
+          <div id="forgot-password-result" style="display: none; margin-top: 16px; padding: 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius); font-size: 13px; color: var(--green); line-height: 1.6;">
+            <!-- Result text -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" onclick="closeForgotPasswordModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary" id="forgot-submit-button">Khôi phục mật khẩu</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

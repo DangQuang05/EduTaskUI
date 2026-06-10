@@ -1,0 +1,984 @@
+<!doctype html>
+
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>EduTask – Học nhóm thông minh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Mono:wght@400;500&family=Inter:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles/dashboard.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <svg fill="none" stroke="#fff" stroke-width="2" viewbox="0 0 24 24">
+            <path
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01m-.01 4h.01"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-name">EduTask</div>
+          <div class="logo-sub">Học nhóm thông minh</div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Tổng quan</div>
+        <button class="nav-item active" onclick="showPage('dashboard')">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewbox="0 0 24 24"
+          >
+            <rect height="7" rx="1" width="7" x="3" y="3"></rect>
+            <rect height="7" rx="1" width="7" x="14" y="3"></rect>
+            <rect height="7" rx="1" width="7" x="3" y="14"></rect>
+            <rect height="7" rx="1" width="7" x="14" y="14"></rect>
+          </svg>
+          Dashboard
+        </button>
+        <button class="nav-item" onclick="showPage('tasks')">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Công việc
+          <span class="badge" id="nav-task-count">0</span>
+        </button>
+        <button class="nav-item" onclick="showPage('groups')">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Nhóm học
+        </button>
+        <button class="nav-item" onclick="showPage('members')">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Thành viên
+        </button>
+        <button class="nav-item" onclick="showPage('notifications')">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0a3 3 0 01-6 0"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Thông báo
+          <span class="badge" id="nav-notification-count">0</span>
+        </button>
+        <button class="nav-item" onclick="showPage('plans')">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="M12 8c-1.7 0-3 .9-3 2s1.3 2 3 2 3 .9 3 2-1.3 2-3 2m0-8c1.1 0 2 .4 2.5 1M12 8V6m0 10v2m-7-6a7 7 0 1114 0 7 7 0 01-14 0z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Gói đăng ký
+        </button>
+      </div>
+      <div class="sidebar-section" style="margin-top: 8px">
+        <div class="sidebar-label">Nhóm của tôi</div>
+        <div class="sidebar-groups" id="sidebar-groups-list">
+          <div class="empty-text">Chưa có nhóm nào</div>
+        </div>
+      </div>
+      <div class="sidebar-section" style="margin-top: 8px">
+        <div class="sidebar-label">Tài khoản của tôi</div>
+        <div class="sidebar-groups">
+          <div class="group-item" onclick="showPage('profile')">
+            <span class="group-name">Hồ sơ</span>
+          </div>
+          <div class="group-item" onclick="logout()">
+            <span class="group-name">Đăng xuất</span>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-user">
+        <div class="user-avatar" id="current-user-avatar">?</div>
+        <div>
+          <div class="user-name" id="current-user-name">Đang tải...</div>
+          <div class="user-role" id="current-user-role">Người dùng</div>
+        </div>
+      </div>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <div class="topbar" id="topbar">
+        <div class="topbar-left">
+          <div>
+            <div class="page-title" id="page-title">Dashboard</div>
+            <div class="breadcrumb" id="page-breadcrumb">Xin chào 👋</div>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-ghost" onclick="refreshAllData()">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M4 4v6h6M20 20v-6h-6M5 19A9 9 0 0019 5M19 5h-5M19 5v5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+            Làm mới
+          </button>
+          <button class="btn btn-ghost" onclick="openGroupModal()">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M12 4v16m8-8H4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+            Tạo nhóm
+          </button>
+          <button class="btn btn-ghost" onclick="openModal()">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M12 4v16m8-8H4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+            Tạo công việc
+          </button>
+          <button class="btn btn-primary" onclick="openAssignModal()">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+            Phân công tự động
+          </button>
+        </div>
+      </div>
+      <!-- PAGE: DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--accent-bg)">
+              <svg
+                fill="none"
+                stroke="var(--accent)"
+                stroke-width="2"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+            <div class="stat-num" id="stat-total-tasks">0</div>
+            <div class="stat-label">Tổng công việc</div>
+            <div class="stat-delta" id="stat-total-tasks-desc">Đang tải...</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--green-bg)">
+              <svg
+                fill="none"
+                stroke="var(--green)"
+                stroke-width="2"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+            <div class="stat-num" id="stat-completed-tasks">0</div>
+            <div class="stat-label">Đã hoàn thành</div>
+            <div class="stat-delta" id="stat-completed-tasks-desc">
+              Đang tải...
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--amber-bg)">
+              <svg
+                fill="none"
+                stroke="var(--amber)"
+                stroke-width="2"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+            <div class="stat-num" id="stat-doing-tasks">0</div>
+            <div class="stat-label">Đang thực hiện</div>
+            <div class="stat-delta" id="stat-doing-tasks-desc">Đang tải...</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--purple-bg)">
+              <svg
+                fill="none"
+                stroke="var(--purple)"
+                stroke-width="2"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+            <div class="stat-num" id="stat-total-groups">0</div>
+            <div class="stat-label">Nhóm học</div>
+            <div class="stat-delta" id="stat-total-groups-desc">
+              Đang tải...
+            </div>
+          </div>
+        </div>
+        <div class="two-col">
+          <!-- TASKS THIS WEEK -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Công việc tuần này</span>
+              <button
+                class="btn btn-ghost"
+                onclick="showPage('tasks')"
+                style="padding: 5px 10px; font-size: 12px"
+              >
+                Xem tất cả →
+              </button>
+            </div>
+            <div
+              class="card-body"
+              id="dashboard-task-list"
+              style="padding-top: 8px; padding-bottom: 8px"
+            >
+              <div class="empty-text">Chưa có công việc nào</div>
+            </div>
+          </div>
+          <!-- CONTRIBUTION CHART -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Mức đóng góp</span>
+            </div>
+            <div class="card-body" id="contribution-list">
+              <div class="empty-text">Chưa có dữ liệu đóng góp</div>
+            </div>
+          </div>
+        </div>
+        <!-- RECENT ACTIVITY -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Hoạt động gần đây</span>
+            <span style="font-size: 12px; color: var(--text3)">Hôm nay</span>
+          </div>
+          <div
+            class="card-body"
+            id="recent-activity-list"
+            style="padding-top: 6px; padding-bottom: 6px"
+          >
+            <div class="empty-text">Chưa có hoạt động nào</div>
+          </div>
+        </div>
+      </div>
+      <!-- PAGE: TASKS -->
+      <div class="page" id="page-tasks">
+        <div class="filter-bar">
+          <div class="filter-pill active" onclick="filterTasks(this, 'all')">
+            Tất cả
+          </div>
+          <div class="filter-pill" onclick="filterTasks(this, 'todo')">
+            Chưa làm
+          </div>
+          <div class="filter-pill" onclick="filterTasks(this, 'doing')">
+            Đang làm
+          </div>
+          <div class="filter-pill" onclick="filterTasks(this, 'done')">
+            Hoàn thành
+          </div>
+          <div
+            style="
+              margin-left: auto;
+              display: flex;
+              gap: 8px;
+              align-items: center;
+            "
+          >
+            <input
+              class="form-input compact-filter"
+              id="task-search-input"
+              oninput="renderTasks(currentTaskFilter)"
+              placeholder="Tìm công việc..."
+              type="text"
+            />
+            <select
+              class="form-select compact-filter"
+              id="task-group-filter"
+              onchange="renderTasks(currentTaskFilter)"
+            >
+              <option value="">Tất cả nhóm</option>
+            </select>
+            <button
+              class="btn btn-ghost"
+              onclick="clearTaskFilters()"
+              style="font-size: 12.5px; padding: 6px 12px"
+            >
+              Xóa lọc
+            </button>
+          </div>
+        </div>
+        <div class="kanban">
+          <!-- TODO -->
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <div class="kanban-col-title">
+                <div
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 2px;
+                    background: #c13535;
+                  "
+                ></div>
+                Chưa làm
+              </div>
+              <div
+                class="kanban-col-count"
+                id="todo-tasks-count"
+                style="background: var(--red-bg); color: var(--red)"
+              >
+                0
+              </div>
+            </div>
+
+            <div id="todo-tasks">
+              <div class="empty-text">Chưa có công việc nào</div>
+            </div>
+          </div>
+          <!-- DOING -->
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <div class="kanban-col-title">
+                <div
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 2px;
+                    background: var(--amber);
+                  "
+                ></div>
+                Đang làm
+              </div>
+              <div
+                class="kanban-col-count"
+                id="doing-tasks-count"
+                style="background: var(--amber-bg); color: var(--amber)"
+              >
+                0
+              </div>
+            </div>
+
+            <div id="doing-tasks">
+              <div class="empty-text">Chưa có công việc nào</div>
+            </div>
+          </div>
+          <!-- DONE -->
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <div class="kanban-col-title">
+                <div
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 2px;
+                    background: var(--green);
+                  "
+                ></div>
+                Hoàn thành
+              </div>
+              <div
+                class="kanban-col-count"
+                id="done-tasks-count"
+                style="background: var(--green-bg); color: var(--green)"
+              >
+                0
+              </div>
+            </div>
+
+            <div id="done-tasks">
+              <div class="empty-text">Chưa có công việc nào</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PAGE: GROUPS -->
+      <div class="page" id="page-groups">
+        <div class="groups-grid" id="groups-list">
+          <div class="empty-text">Chưa có nhóm học nào</div>
+        </div>
+      </div>
+      <!-- PAGE: MEMBERS -->
+      <div class="page" id="page-members">
+        <div class="card" style="margin-bottom: 20px">
+          <div class="card-header">
+            <span class="card-title" id="members-title">Thành viên</span>
+            <button
+              class="btn btn-ghost"
+              onclick="openInviteMemberModal()"
+              style="font-size: 12px; padding: 5px 10px"
+            >
+              + Mời thành viên
+            </button>
+          </div>
+          <div class="members-table-wrap">
+            <table class="members-table">
+              <thead>
+                <tr>
+                  <th>Thành viên</th>
+                  <th>Vai trò</th>
+                  <th>Đã hoàn thành</th>
+                  <th>Điểm đóng góp</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody id="members-list">
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 24px">
+                    Chọn một nhóm để xem thành viên
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="ai-section">
+          <div class="ai-header">
+            <span class="ai-badge">AI</span>
+            <span class="ai-title">Gợi ý phân công dựa trên đóng góp</span>
+          </div>
+          <div class="ai-desc">
+            Hệ thống phân tích tải công việc và lịch sử đóng góp để đề xuất phân
+            công công bằng hơn.
+          </div>
+          <div class="ai-suggestions" id="ai-suggestions-list">
+            <div class="empty-text">Chưa có gợi ý phân công</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: PROFILE -->
+      <div class="page" id="page-profile">
+        <div class="card" style="max-width: 760px; margin-bottom: 20px">
+          <div class="card-header">
+            <span class="card-title">Hồ sơ cá nhân</span>
+            <span style="font-size: 12px; color: var(--text3)"
+              >Cập nhật từ backend</span
+            >
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Họ tên</label>
+                <input
+                  class="form-input"
+                  id="profile-fullname"
+                  type="text"
+                  placeholder="Nhập họ tên"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input
+                  class="form-input"
+                  id="profile-email"
+                  type="email"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Avatar URL</label>
+              <input
+                class="form-input"
+                id="profile-avatar"
+                type="text"
+                placeholder="Dán link ảnh nếu có"
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Kỹ năng</label>
+                <textarea
+                  class="form-textarea"
+                  id="profile-skills"
+                  placeholder="Ví dụ: thiết kế slide, viết báo cáo, thuyết trình..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Thời gian rảnh</label>
+                <textarea
+                  class="form-textarea"
+                  id="profile-availability"
+                  placeholder="Ví dụ: tối T2, T4, cuối tuần..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" onclick="updateProfile()">
+              Lưu hồ sơ
+            </button>
+          </div>
+        </div>
+        <div class="card danger-card" style="max-width: 760px">
+          <div class="card-header">
+            <span class="card-title">Lưu Ý</span>
+          </div>
+          <div
+            class="card-body"
+            style="
+              display: flex;
+              justify-content: space-between;
+              gap: 12px;
+              align-items: center;
+            "
+          >
+            <div style="font-size: 13px; color: var(--text2)">
+              Vô hiệu hóa tài khoản hiện tại. Sau khi thao tác, bạn sẽ bị đăng
+              xuất.
+            </div>
+            <button class="btn btn-danger" onclick="deleteMyAccount()">
+              Xóa tài khoản
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: NOTIFICATIONS -->
+      <div class="page" id="page-notifications">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Thông báo</span>
+            <button
+              class="btn btn-ghost"
+              onclick="markAllNotificationsRead()"
+              style="font-size: 12px; padding: 5px 10px"
+            >
+              Đánh dấu đã đọc tất cả
+            </button>
+          </div>
+          <div
+            class="card-body"
+            id="notifications-list"
+            style="padding-top: 6px; padding-bottom: 6px"
+          >
+            <div class="empty-text">Chưa có thông báo nào</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: PLANS -->
+      <div class="page" id="page-plans">
+        <div class="card" style="margin-bottom: 20px">
+          <div class="card-header">
+            <span class="card-title">Gói đang sử dụng</span>
+          </div>
+          <div class="card-body" id="active-subscription-box">
+            <div class="empty-text">Chưa có gói đăng ký</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Danh sách gói</span>
+          </div>
+          <div class="card-body">
+            <div class="plans-grid" id="plans-list">
+              <div class="empty-text">Chưa có gói nào</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 20px">
+          <div class="card-header">
+            <span class="card-title">Lịch sử giao dịch</span>
+          </div>
+          <div class="card-body" id="transactions-list">
+            <div class="empty-text">Chưa có giao dịch nào</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- MODAL: TẠO NHÓM -->
+    <div class="modal-overlay" id="modal-create-group">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">Tạo nhóm mới</div>
+          <button class="modal-close" onclick="closeGroupModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Tên nhóm</label>
+            <input
+              class="form-input"
+              id="group-name"
+              placeholder="Ví dụ: Nhóm EXE201"
+              type="text"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deadline</label>
+            <input class="form-input" id="group-deadline" type="date" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeGroupModal()">Hủy</button>
+          <button class="btn btn-primary" onclick="createGroup()">
+            Tạo nhóm
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: TẠO CÔNG VIỆC -->
+    <div class="modal-overlay" id="modal-create">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">Tạo công việc mới</div>
+          <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Tên công việc</label>
+            <input
+              class="form-input"
+              id="task-title"
+              placeholder="Nhập tên công việc..."
+              type="text"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mô tả</label>
+            <textarea
+              class="form-textarea"
+              id="task-description"
+              placeholder="Mô tả chi tiết..."
+            ></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nhóm</label>
+              <select
+                class="form-select"
+                id="task-group-select"
+                onchange="loadMembersForTaskSelect(this.value)"
+              >
+                <option value="">Chọn nhóm</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ưu tiên</label>
+              <select class="form-select" id="task-priority-select">
+                <option value="NORMAL">Bình thường</option>
+                <option value="HIGH">Cao</option>
+                <option value="URGENT">Khẩn cấp</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Ngày hết hạn</label>
+              <input class="form-input" id="task-deadline" type="date" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Giao cho</label>
+              <select class="form-select" id="task-assignee-select">
+                <option value="">Chưa giao</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal()">Hủy</button>
+          <button class="btn btn-primary" onclick="createTask()">
+            Tạo công việc
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL: PHÂN CÔNG TỰ ĐỘNG -->
+    <div class="modal-overlay" id="modal-assign">
+      <div class="modal" style="width: 520px">
+        <div class="modal-header">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <div
+              style="
+                padding: 4px 8px;
+                background: var(--accent);
+                border-radius: 5px;
+                font-size: 10px;
+                font-weight: 700;
+                color: #fff;
+                letter-spacing: 0.5px;
+              "
+            >
+              AI
+            </div>
+            <div class="modal-title">Phân công tự động</div>
+          </div>
+          <button class="modal-close" onclick="closeAssignModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size: 13px; color: var(--text2); margin-bottom: 16px">
+            Hệ thống sẽ phân tích tải công việc, điểm đóng góp và kỹ năng từng
+            thành viên để tự động giao nhiệm vụ một cách công bằng.
+          </p>
+          <div class="form-group">
+            <label class="form-label">Chọn nhóm</label>
+            <select class="form-select" id="assign-group-select">
+              <option value="">Chọn nhóm</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tiêu chí phân công</label>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                "
+              >
+                <input
+                  checked=""
+                  style="width: 15px; height: 15px; accent-color: var(--accent)"
+                  type="checkbox"
+                />
+                <span style="font-size: 13px">Cân bằng tải công việc</span>
+              </label>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                "
+              >
+                <input
+                  checked=""
+                  style="width: 15px; height: 15px; accent-color: var(--accent)"
+                  type="checkbox"
+                />
+                <span style="font-size: 13px"
+                  >Ưu tiên thành viên đóng góp ít</span
+                >
+              </label>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                "
+              >
+                <input
+                  style="width: 15px; height: 15px; accent-color: var(--accent)"
+                  type="checkbox"
+                />
+                <span style="font-size: 13px">Theo lĩnh vực kỹ năng</span>
+              </label>
+            </div>
+          </div>
+          <div
+            style="
+              background: var(--accent-bg);
+              border: 1px solid #d0d8f5;
+              border-radius: var(--radius);
+              padding: 14px;
+              margin-top: 4px;
+            "
+          >
+            <div
+              style="
+                font-size: 12.5px;
+                font-weight: 600;
+                color: var(--accent-text);
+                margin-bottom: 8px;
+              "
+            >
+              Kết quả gợi ý
+            </div>
+            <div
+              id="assign-result-list"
+              style="display: flex; flex-direction: column; gap: 7px"
+            >
+              <div class="empty-text">Chưa có kết quả gợi ý</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeAssignModal()">
+            Hủy
+          </button>
+          <button class="btn btn-primary" onclick="applyAssign()">
+            Áp dụng phân công
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL: MỜI THÀNH VIÊN -->
+    <div class="modal-overlay" id="modal-invite-member">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">Thêm thành viên vào nhóm</div>
+          <button class="modal-close" onclick="closeInviteMemberModal()">
+            ×
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Chọn tài khoản</label>
+            <select class="form-select" id="invite-user-select">
+              <option value="">Chọn thành viên</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Vai trò</label>
+            <select class="form-select" id="invite-role-select">
+              <option value="MEMBER">Thành viên</option>
+              <option value="ADMIN">Nhóm trưởng</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeInviteMemberModal()">
+            Hủy
+          </button>
+          <button class="btn btn-primary" onclick="addMemberToCurrentGroup()">
+            Thêm thành viên
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: THANH TOÁN (VIETQR) -->
+    <div class="modal-overlay" id="modal-payment">
+      <div class="modal" style="width: 480px; max-width: 90%;">
+        <div class="modal-header">
+          <div class="modal-title">Thanh toán chuyển khoản VietQR</div>
+          <button class="modal-close" onclick="closePaymentModal()">×</button>
+        </div>
+        <div class="modal-body" style="text-align: center; padding: 20px;">
+          <p style="font-size: 13px; color: var(--text2); margin-bottom: 16px;">
+            Quét mã QR dưới đây bằng ứng ứng dụng Ngân hàng (Mobile Banking) của bạn để thanh toán:
+          </p>
+          <div style="background: #fff; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius); display: inline-block; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <img id="payment-qr-image" src="" alt="VietQR Code" style="width: 240px; height: 240px; display: block; object-fit: contain;" />
+          </div>
+          <div style="text-align: left; background: var(--surface2); padding: 14px; border-radius: var(--radius); font-size: 13px; color: var(--text);">
+            <div style="margin-bottom: 6px; display: flex; justify-content: space-between;">
+              <span style="color: var(--text2);">Gói đăng ký:</span>
+              <strong id="payment-plan-name">-</strong>
+            </div>
+            <div style="margin-bottom: 6px; display: flex; justify-content: space-between;">
+              <span style="color: var(--text2);">Số tiền:</span>
+              <strong id="payment-amount" style="color: var(--accent);">-</strong>
+            </div>
+            <div style="margin-bottom: 6px; display: flex; justify-content: space-between;">
+              <span style="color: var(--text2);">Số tài khoản:</span>
+              <strong>00160920049999 (MB Bank)</strong>
+            </div>
+            <div style="margin-bottom: 6px; display: flex; justify-content: space-between;">
+              <span style="color: var(--text2);">Chủ tài khoản:</span>
+              <strong>PHAM NGUYEN KIEN</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border2); margin-top: 8px; padding-top: 8px;">
+              <span style="color: var(--text2);">Nội dung chuyển khoản:</span>
+              <strong id="payment-description" style="color: var(--green); font-family: monospace; font-size: 14px;">-</strong>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+          <span style="font-size: 11.5px; color: var(--text3); max-width: 50%; text-align: left;">* Hệ thống tự động kích hoạt gói sau khi nhấn Xác nhận chuyển khoản</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-ghost" onclick="closePaymentModal()">Hủy</button>
+            <button class="btn btn-primary" id="confirm-payment-btn">Xác nhận chuyển khoản</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
